@@ -6,7 +6,8 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -17,6 +18,7 @@ import {
     MatButtonModule,
     MatToolbarModule,
     MatCheckboxModule,
+    MatExpansionModule
   ]
 })
 
