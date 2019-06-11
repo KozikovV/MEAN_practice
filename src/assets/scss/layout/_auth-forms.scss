@@ -1,0 +1,78 @@
+.auth-form {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  flex: 1 1 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0c9c9;
+  &-login {
+    padding: 20px 40px;
+    width: 350px;
+    mat-card {
+      padding: 20px 40px;
+      mat-form-field {
+        width: 100%;
+      }
+      button {
+        margin-bottom: 10px;
+      }
+      a {
+        color: green;
+      }
+    }
+
+  }
+  &-singup {
+    padding: 20px 40px;
+    width: 450px;
+    mat-card {
+      padding: 20px 40px;
+      .idintifier {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        mat-form-field {
+          width: 45%;
+          &:nth-child(3),
+          &:last-child {
+            width: 100%;
+          }
+          input {
+            padding: 0 5px;
+          }
+        }
+      }
+      .parameters {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        mat-form-field {
+          width: 45%;
+        }
+      }
+    }
+  }
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+    mat-form-field {
+      width: 45%;
+      input {
+        padding: 0 5px;
+      }
+    }
+}
+
+mat-card-footer {
+  padding: 10px;
+  text-align: center;
+}
