@@ -50,7 +50,6 @@
             <input type="password" matInput formControlName="password" placeholder="Enter password">
             <mat-error *ngIf="showRequireError(singupForm.get('password'), 'required')">Required</mat-error>
           </mat-form-field>
-          <mat-error *ngIf="!comparePasswords">Not same</mat-error>
         </div>
         <button mat-raised-button color="accent" type="submit">SINGUP</button>
       </form>

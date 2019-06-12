@@ -29,8 +29,18 @@ userRouter.post('/singup', imageControll, (req, res, next) => {
       user.save()
         .then((result) => {
           res.status(200).json({
-            message: "All good",
-            body: result
+            message: "Singup seccess",
+            body: {
+              age: result.age,
+              email: result.email,
+              imagePath: result.image,
+              name: result.name,
+              nickName: result.nickName,
+              surname: result.surname,
+              weight: result.weight,
+              height: result.height,
+              userId: result._id
+            }
           });
         })
         .catch((error) => {
@@ -68,10 +78,47 @@ userRouter.post('/login', (req, res, next) => {
       res.status(200).json({
         token,
         expiresIn: 3600,
-        userId: loginedUser._id,
-        loginedUser
+        loginedUser: {
+          age: loginedUser.age,
+          email: loginedUser.email,
+          imagePath: loginedUser.image,
+          name: loginedUser.name,
+          nickName: loginedUser.nickName,
+          surname: loginedUser.surname,
+          weight: loginedUser.weight,
+          height: loginedUser.height,
+          userId: loginedUser._id
+        }
       });
     })
+});
+
+
+userRouter.get('/profile', (req, res, next) => {
+  if (!req.header('Authorization')) {
+    res.status(401).json({
+      message: 'Not Authorize'
+    })
+  }
+  const token = req.header('Authorization').slice(7);
+  const userId = jwt.verify(token, 'some text').userId;
+  User.findById(userId)
+  .then((user) => {
+    res.status(200).json({
+      message: 'Here your user',
+      body: {
+        age: user.age,
+        email: user.email,
+        imagePath: user.image,
+        name: user.name,
+        nickName: user.nickName,
+        surname: user.surname,
+        weight: user.weight,
+        height: user.height,
+        userId: user._id
+      }
+    })
+  })
 });
 
 module.exports = userRouter;

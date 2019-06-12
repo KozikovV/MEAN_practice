@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { Login } from 'src/app/models/auth';
 
 
 
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userService.login(this.loginForm.value)
       .subscribe(
-        (response) => {
+        (data: Login) => {
+          this.userService.setToken(data.token);
           this.router.navigate(['./portal/my-profile']);
         }
       );

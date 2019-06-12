@@ -1,60 +1,58 @@
 <mat-card>
   <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>User Profile</mat-card-title>
-    <mat-card-subtitle>{{ 'userName' }}</mat-card-subtitle>
+    <div mat-card-avatar #avatar class="profile-image"></div>
+    <mat-card-title>{{ profileUser?.name }} {{ profileUser?.surname }}</mat-card-title>
+    <mat-card-subtitle>{{ profileUser?.nickName }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form>
-      <div class="idintifier">
+    <form [formGroup]="userProfileForm">
+      <div class="">
         <mat-form-field>
           <input type="text" matInput formControlName="name" placeholder="First name">
-          <mat-error *ngIf="showRequireError(singupForm.get('name'), 'required')">Required</mat-error>
+          <mat-error *ngIf="showRequireError(userProfileForm.get('name'), 'required')">Required</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="text" matInput formControlName="surname" placeholder="Last name">
-            <mat-error *ngIf="showRequireError(singupForm.get('surname'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('surname'), 'required')">Required</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="text" matInput formControlName="nickName" placeholder="Nick for app">
-            <mat-error *ngIf="showRequireError(singupForm.get('nickName'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('nickName'), 'required')">Required</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="email" matInput formControlName="email" placeholder="Email">
-            <mat-error *ngIf="showRequireError(singupForm.get('email'), 'required')">Required</mat-error>
-            <mat-error *ngIf="showRequireError(singupForm.get('email'), 'email')">Email</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('email'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('email'), 'email')">Email</mat-error>
         </mat-form-field>
       </div>
-      <div class="parameters">
+      <div class="">
         <mat-form-field>
           <input type="number" matInput formControlName="age" placeholder="Age">
-            <mat-error *ngIf="showRequireError(singupForm.get('age'), 'required')">Required</mat-error>
-            <mat-error *ngIf="showRequireError(singupForm.get('age'), '')">wrong format</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('age'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('age'), '')">wrong format</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="number" matInput formControlName="weight" placeholder="Weight">
-            <mat-error *ngIf="showRequireError(singupForm.get('weight'), 'required')">Required</mat-error>
-            <mat-error *ngIf="showRequireError(singupForm.get('weight'), '')">wrong format</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('weight'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('weight'), '')">wrong format</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="number" matInput formControlName="height" placeholder="Height">
-            <mat-error *ngIf="showRequireError(singupForm.get('height'), 'required')">Required</mat-error>
-            <mat-error *ngIf="showRequireError(singupForm.get('height'), '')">wrong format</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('height'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showRequireError(userProfileForm.get('height'), '')">wrong format</mat-error>
         </mat-form-field>
       </div>
     </form>
   </mat-card-content>
   <mat-card-footer>
     <mat-card-actions>
-      <button type="button">Cancel</button>
-      <button type="submit">Update</button>
+      <button mat-button type="button">Cancel</button>
+      <button mat-button type="submit">Update</button>
     </mat-card-actions>
   </mat-card-footer>
 </mat-card>
 <div class="profile-trainings">
   <mat-accordion>
-    <mat-expension-panel *ngFor="training of trainings">
 
-    </mat-expension-panel>
   </mat-accordion>
 </div>

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { PortalComponent } from './portal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile/profile/profile.component';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
@@ -22,7 +22,8 @@ import { CreatePlanComponent } from './create-plan/create-plan.component';
     CommonModule,
     RouterModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     PortalComponent

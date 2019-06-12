@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SERVICE_URL } from '../config/api-hosts';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Login, Singup } from '../models/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  singup({name, surname, nickName, password, email, image, age, weight, hight}) {
+  singup({name, surname, nickName, password, email, image, age, weight, height}): Observable<Singup> {
     const user = new FormData();
     user.append('name', name);
     user.append('surname', surname);
@@ -23,12 +25,24 @@ export class UserService {
     user.append('image', image, nickName);
     user.append('age', age);
     user.append('weight', weight);
-    user.append('hight', hight);
+    user.append('height', height);
 
-    return this.httpClient.post(this.baseUrl + '/singup', user);
+    return this.httpClient.post<Singup>(this.baseUrl + '/singup', user);
   }
 
-  login(credentials: {nickName: string, password: string}) {
-    return this.httpClient.post(this.baseUrl + '/login', credentials);
+  login(credentials: {nickName: string, password: string}): Observable<Login> {
+    return this.httpClient.post<Login>(this.baseUrl + '/login', credentials);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  get token(): string {
+    return localStorage.getItem('token');
+  }
+
+  getProfileInformation() {
+    return this.httpClient.get(this.baseUrl + '/profile');
   }
 }

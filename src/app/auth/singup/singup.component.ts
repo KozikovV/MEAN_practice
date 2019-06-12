@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { Singup } from 'src/app/models/auth';
 
 @Component({
   selector: 'app-singup',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 
 export class SingupComponent implements OnInit {
   singupForm: FormGroup;
-  imagePreview: string;
+  imagePreview: string = './assets/images/user.jpg';
   constructor(
     private router: Router,
     private userService: UserService
@@ -36,7 +37,7 @@ export class SingupComponent implements OnInit {
     if (this.singupForm.valid) {
       this.userService.singup(this.singupForm.value)
       .subscribe(
-        (data) => {
+        (data: Singup) => {
           this.singupForm.reset();
           this.router.navigate(['/login']);
         }
