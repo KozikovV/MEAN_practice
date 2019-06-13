@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExerciseServices } from 'src/app/services/exercise.service';
+import { CreateExerciseComponent } from 'src/app/modals/create-exercise/create-exercise.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-create-plan',
@@ -9,14 +11,22 @@ import { ExerciseServices } from 'src/app/services/exercise.service';
 export class CreatePlanComponent implements OnInit {
 
   constructor(
-    private exerciseService: ExerciseServices
+    private exerciseService: ExerciseServices,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.exerciseService.getExerciseList()
     .subscribe(
       (data) => console.log(data)
-    )
+    );
+  }
+
+  openCreateExerciseModal(): void {
+    const dialogRef = this.dialog.open(CreateExerciseComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }
