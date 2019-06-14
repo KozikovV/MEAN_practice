@@ -1,0 +1,15 @@
+.header {
+  margin-bottom: 5px;
+}
+
+mat-expansion-panel {
+  padding-top: 10px;
+  width: 50%;
+}
+
+mat-accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

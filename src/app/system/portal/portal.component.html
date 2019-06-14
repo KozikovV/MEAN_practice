@@ -1,8 +1,20 @@
-<app-header></app-header>
 <mat-sidenav-container>
-  <mat-sidenav opened>Start</mat-sidenav>
+  <mat-sidenav [opened]="toggleNavigation" id="navigator" #sidenav>
+    <button mat-raised-button color="accent" type="button" (click)="showSidenav('nav')" id="navigator-btn">Nav</button>
+    <nav class="navigation">
+      <ul class="navigation-list">
+        <li class="navigation-list-item">
+          <button mat-raised-button color="accent" [routerLink]="['create-training']" (click)="sidenav.toggle()">Create</button>
+        </li>
+      </ul>
+    </nav>
+  </mat-sidenav>
   <section>
+    <app-header></app-header>
     <router-outlet></router-outlet>
   </section>
-  <mat-sidenav position="end" opened>End</mat-sidenav>
+  <mat-sidenav position="end" [opened]="toggleProfile" id="profile">
+    <button mat-raised-button color="accent" type="button" (click)="showSidenav('prof')" id="profile-btn">Prof</button>
+    <app-profile></app-profile>
+  </mat-sidenav>
 </mat-sidenav-container>

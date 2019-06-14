@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormGroup, FormControl, FormArray, NgForm, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, NgForm, AbstractControl, Validators } from '@angular/forms';
 import { ExerciseService } from 'src/app/services/exercise.service';
+import { Exercise } from 'src/app/models/exercise';
 
 @Component({
   selector: 'app-create-exercise',
@@ -10,46 +11,53 @@ import { ExerciseService } from 'src/app/services/exercise.service';
 })
 export class CreateExerciseComponent implements OnInit {
   createExerciseForm: FormGroup;
-  targets: number[] = [1];
   constructor(
     public dialogRef: MatDialogRef<CreateExerciseComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Exercise,
     private exerciseService: ExerciseService
   ) { }
 
   ngOnInit() {
     this.createExerciseForm = new FormGroup({
-      title: new FormControl(),
+      title: new FormControl(null, Validators.required),
       information: new FormGroup({
-        description: new FormControl(),
-        targetMuscle: new FormArray([
-          new FormControl()
-        ])
+        description: new FormControl(null, Validators.required),
+        targetMuscle: new FormArray([])
       }),
     });
+    this.patchArrayValue();
   }
 
   createExercise() {
-    this.exerciseService.createExercise(this.createExerciseForm.value)
+    if (this.createExerciseForm.valid) {
+      this.exerciseService.createExercise(this.createExerciseForm.value)
       .subscribe(
         () => {
-          this.dialogRef.close();
+          this.dialogRef.close(this.createExerciseForm.value);
         }
       );
+    }
   }
+
   ocCloseModal(): void {
     this.dialogRef.close();
   }
 
   addTargetMuscle() {
-    if (this.targets.length < 5) {
-      this.targets.push(this.targetLastValue + 1);
+    if (this.createExerciseForm.value.information.targetMuscle.length < 5) {
       (this.createExerciseForm.get('information.targetMuscle') as FormArray).push(new FormControl);
     }
   }
 
-  get targetLastValue(): number {
-    return this.targets[this.targets.length - 1];
+  patchArrayValue() {
+    if (this.data.information.targetMuscle.length) {
+      this.createExerciseForm.get('title').setValue(this.data.title);
+      this.createExerciseForm.get('information.description').setValue(this.data.information.description);
+      this.data.information.targetMuscle.forEach((muscle: string, i: number) => {
+        (this.createExerciseForm.get('information.targetMuscle') as FormArray).push(new FormControl);
+        this.createExerciseForm.get(`information.targetMuscle.${i}`).setValue(muscle);
+      });
+    }
   }
 
 }

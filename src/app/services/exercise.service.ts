@@ -22,4 +22,12 @@ export class ExerciseService {
   createExercise(exercise: Exercise): Observable<any> {
     return this.httpClient.post<any>(`${this.baseUrl}/create`, {exercise});
   }
+
+  deleteExercise(exerciseId): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/delete/${exerciseId}`);
+  }
+
+  editExercise(exercise: Exercise): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/edit/${exercise.exercisesId}`, exercise);
+  }
 }

@@ -3,6 +3,7 @@ export interface ExerciseResponse {
 }
 
 export interface Exercise {
+  exercisesId: string;
   title: string;
   information: {
     description: string;

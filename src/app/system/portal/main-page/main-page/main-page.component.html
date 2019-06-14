@@ -1,3 +1,20 @@
-<p>
-  main-page works!
-</p>
+<div class="header">
+  <button mat-raised-button type="button" (click)="openCreateExerciseModal()">Create exercise</button>
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let exercise of exerciseList">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ exercise.title }}
+        </mat-panel-title>
+        <mat-action-row>
+          <button mat-raised-button color="warn" (click)="deleteExercise(exercise.exercisesId)">Delete</button>
+          <button mat-raised-button color="primary" (click)="editExercise(exercise)">Edit</button>
+        </mat-action-row>
+    </mat-expansion-panel-header>
+    <p>{{ exercise.information.description }}</p>
+    <ul>
+      <li *ngFor="let item of exercise.information.targetMuscle">{{item}}</li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

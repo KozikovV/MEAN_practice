@@ -9,7 +9,7 @@
       </mat-form-field>
       <div class="muscles" formArrayName="targetMuscle" *ngFor="let target of createExerciseForm.get('information.targetMuscle').controls; let i = index;">
           <mat-form-field>
-            <input type="text" formControlName="{{i}}" matInput style="width: 100%">
+            <input type="text" formControlName="{{i}}" matInput style="width: 100%" [placeholder]="i + 1">
           </mat-form-field>
       </div>
       <button type="button" mat-mini-fab color="primary" (click)="addTargetMuscle()">+</button>
