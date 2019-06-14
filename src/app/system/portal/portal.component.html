@@ -1,1 +1,8 @@
 <app-header></app-header>
+<mat-sidenav-container>
+  <mat-sidenav opened>Start</mat-sidenav>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+  <mat-sidenav position="end" opened>End</mat-sidenav>
+</mat-sidenav-container>
