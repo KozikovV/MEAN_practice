@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExerciseServices } from 'src/app/services/exercise.service';
+import { ExerciseService } from 'src/app/services/exercise.service';
 import { CreateExerciseComponent } from 'src/app/modals/create-exercise/create-exercise.component';
 import { MatDialog } from '@angular/material';
 
@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material';
 export class CreatePlanComponent implements OnInit {
 
   constructor(
-    private exerciseService: ExerciseServices,
+    private exerciseService: ExerciseService,
     public dialog: MatDialog
   ) { }
 
