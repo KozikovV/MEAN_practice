@@ -8,7 +8,8 @@ import {
   MatToolbarModule,
   MatCheckboxModule,
   MatExpansionModule,
-  MatStepperModule
+  MatStepperModule,
+  MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -20,7 +21,8 @@ import {
     MatToolbarModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule
   ]
 })
 
