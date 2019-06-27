@@ -11,6 +11,7 @@ import { Exercise } from 'src/app/models/exercise';
 })
 export class CreateExerciseComponent implements OnInit {
   createExerciseForm: FormGroup;
+  editState: boolean;
   constructor(
     public dialogRef: MatDialogRef<CreateExerciseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Exercise,
@@ -18,6 +19,7 @@ export class CreateExerciseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.editState = !!this.data;
     this.createExerciseForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       information: new FormGroup({
@@ -29,11 +31,23 @@ export class CreateExerciseComponent implements OnInit {
   }
 
   createExercise() {
-    if (this.createExerciseForm.valid) {
+    if (!this.createExerciseForm.valid) {
+      return;
+    }
+    if (!this.editState) {
       this.exerciseService.createExercise(this.createExerciseForm.value)
       .subscribe(
         () => {
           this.dialogRef.close(this.createExerciseForm.value);
+        }
+      );
+    } else {
+      const exercise = this.createExerciseForm.value;
+      Object.assign(exercise, {exercisesId: this.data.exercisesId});
+      this.exerciseService.editExercise(exercise)
+      .subscribe(
+        (data) => {
+          this.dialogRef.close(exercise);
         }
       );
     }
@@ -50,7 +64,7 @@ export class CreateExerciseComponent implements OnInit {
   }
 
   patchArrayValue() {
-    if (this.data.information.targetMuscle.length) {
+    if (!!this.data) {
       this.createExerciseForm.get('title').setValue(this.data.title);
       this.createExerciseForm.get('information.description').setValue(this.data.information.description);
       this.data.information.targetMuscle.forEach((muscle: string, i: number) => {
@@ -58,6 +72,10 @@ export class CreateExerciseComponent implements OnInit {
         this.createExerciseForm.get(`information.targetMuscle.${i}`).setValue(muscle);
       });
     }
+  }
+
+  get buttonName(): string {
+    return this.editState ? 'Update' : 'Add';
   }
 
 }

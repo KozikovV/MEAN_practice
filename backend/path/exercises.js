@@ -1,10 +1,11 @@
 const express = require('express');
 
 const Exercises = require('../scemas/exercise');
-
+const calendar = require('../calendar/calendar-api');
 const exercisesRoute = express.Router();
 
 exercisesRoute.get('', (req, res, next) => {
+  calendar.calendarAut();
   Exercises.find()
     .then(exercisesList => {
       exercisesList = exercisesList.map((exercise) => {
@@ -48,6 +49,22 @@ exercisesRoute.delete('/delete/:exerciseId', (req, res, next) => {
       message: 'Not Found'
     })
   });
+});
+
+exercisesRoute.put('/edit/:exerciseId', (req, res, next) => {
+  let exercise = req.body;
+  exercise.information.targetMuscle = exercise.information.targetMuscle.filter((muscle) => {
+    return muscle.length;
+  })
+  Exercises.findByIdAndUpdate(req.params.exerciseId, {$set: exercise}, (err, response) => {
+    if (err) {
+      return;
+    } else {
+      res.status(200).json({
+        message: exercise
+      });
+    }
+  })
 });
 
 module.exports = exercisesRoute;

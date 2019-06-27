@@ -30,4 +30,5 @@ export class ExerciseService {
   editExercise(exercise: Exercise): Observable<any> {
     return this.httpClient.put(`${this.baseUrl}/edit/${exercise.exercisesId}`, exercise);
   }
+
 }

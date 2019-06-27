@@ -44,15 +44,12 @@ export class MainPageComponent implements OnInit {
   }
 
   editExercise(exercise: Exercise): void {
-    const dialogRef = this.dialog.open(CreateExerciseComponent, { data: exercise
-
-    });
+    const dialogRef = this.dialog.open(CreateExerciseComponent,
+      { data: exercise }
+    );
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.exerciseService.editExercise(Object.assign({exercisesId: exercise.exercisesId}, result))
-        .subscribe(
-          (response) => this.fetchExercises()
-        );
+        this.fetchExercises();
       }
     });
   }
