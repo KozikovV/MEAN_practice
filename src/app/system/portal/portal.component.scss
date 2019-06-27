@@ -1,0 +1,24 @@
+#profile {
+  width: 300px;
+  overflow: unset;
+  &-btn {
+    position: absolute;
+    left: -65px;
+    visibility: initial;
+  }
+}
+
+#navigator {
+  width: 150px;
+  overflow: unset;
+  &-btn {
+    position: absolute;
+    right: -65px;
+    bottom: 0;
+    visibility: initial;
+  }
+}
+
+section {
+  height: 100%;
+}

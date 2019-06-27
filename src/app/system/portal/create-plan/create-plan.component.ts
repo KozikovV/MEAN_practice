@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExerciseServices } from 'src/app/services/exercise.service';
+import { ExerciseService } from 'src/app/services/exercise.service';
 
 @Component({
   selector: 'app-create-plan',
@@ -9,14 +9,14 @@ import { ExerciseServices } from 'src/app/services/exercise.service';
 export class CreatePlanComponent implements OnInit {
 
   constructor(
-    private exerciseService: ExerciseServices
+    private exerciseService: ExerciseService,
   ) { }
 
   ngOnInit() {
     this.exerciseService.getExerciseList()
     .subscribe(
       (data) => console.log(data)
-    )
+    );
   }
 
 }

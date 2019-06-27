@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data: Login) => {
           this.userService.setToken(data.token);
-          this.router.navigate(['./portal/my-profile']);
+          this.router.navigate(['./portal']);
         }
       );
     }

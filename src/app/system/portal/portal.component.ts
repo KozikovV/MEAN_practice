@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-portal',
@@ -8,4 +9,14 @@ import { Component } from '@angular/core';
 
 export class PortalComponent {
 
+  @ViewChildren(MatSidenav) sidenav: MatSidenav;
+
+  toggleProfile: boolean = false;
+  toggleNavigation: boolean = false;
+
+  constructor() {}
+
+  showSidenav(side: string): void {
+    side === 'prof' ? this.toggleProfile = !this.toggleProfile : this.toggleNavigation = !this.toggleNavigation;
+  }
 }
