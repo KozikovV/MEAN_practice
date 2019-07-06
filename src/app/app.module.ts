@@ -12,7 +12,8 @@ import { PortalModule } from './system/portal/portal.module';
 import { AuthInterceptor } from './interseptor/auth.interceptor';
 import { CreateExerciseComponent } from './modals/create-exercise/create-exercise.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GapiModule } from './gapi/gapi.module';
 
 @NgModule({
   declarations: [AppComponent, CreateExerciseComponent],
@@ -25,7 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularMaterialModule,
     PortalModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GapiModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

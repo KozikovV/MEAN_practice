@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Login } from 'src/app/models/auth';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private calendarService: CalendarService
   ) {}
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.loginForm.value)
       .subscribe(
         (data: Login) => {
+          this.calendarService.signIn();
           this.userService.setToken(data.token);
           this.router.navigate(['./portal']);
         }

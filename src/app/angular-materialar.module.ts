@@ -10,7 +10,11 @@ import {
   MatExpansionModule,
   MatStepperModule,
   MatDialogModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatListModule
 } from '@angular/material';
 
 @NgModule({
@@ -24,7 +28,11 @@ import {
     MatExpansionModule,
     MatStepperModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule
   ]
 })
 

@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile/profile/profile.component';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { TodayTrainingComponent } from './today-training/today-training.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CreatePlanComponent } from './create-plan/create-plan.component';
     PortalComponent,
     ProfileComponent,
     MainPageComponent,
-    CreatePlanComponent
+    CreatePlanComponent,
+    CalendarComponent,
+    TodayTrainingComponent
   ],
   imports: [
     CommonModule,

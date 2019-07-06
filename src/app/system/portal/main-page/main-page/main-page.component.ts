@@ -3,6 +3,7 @@ import { ExerciseService } from 'src/app/services/exercise.service';
 import { MatDialog } from '@angular/material';
 import { CreateExerciseComponent } from 'src/app/modals/create-exercise/create-exercise.component';
 import { ExerciseResponse, Exercise } from 'src/app/models/exercise';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +15,8 @@ export class MainPageComponent implements OnInit {
   exerciseList: Exercise[];
   constructor(
     private exerciseService: ExerciseService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private calendarService: CalendarService
   ) { }
 
   ngOnInit() {
@@ -31,16 +33,22 @@ export class MainPageComponent implements OnInit {
   }
 
   openCreateExerciseModal(): void {
-    const dialogRef = this.dialog.open(CreateExerciseComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    this.calendarService.signIn();
+
+    // const dialogRef = this.dialog.open(CreateExerciseComponent);
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
   }
 
   deleteExercise(id: string): void {
-    this.exerciseService.deleteExercise(id)
+    this.calendarService.getCalendar()
     .subscribe(
-      (response) => this.fetchExercises()
-    );
+      data => console.log(data)
+    )
+    // this.exerciseService.deleteExercise(id)
+    // .subscribe(
+    //   (response) => this.fetchExercises()
+    // );
   }
 
   editExercise(exercise: Exercise): void {
