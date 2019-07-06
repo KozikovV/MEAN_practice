@@ -1,0 +1,10 @@
+<mat-list>
+  <mat-list-item *ngFor="let training of trainings">
+    <h3 mat-line>
+      <span [routerLink]="['/portal/today-training', training.trainingId]">{{ training.date }}</span>
+    </h3>
+    <p *ngFor="let exercise of training.exercises" mat-line>
+      {{ exercise.title }}
+    </p>
+  </mat-list-item>
+</mat-list>

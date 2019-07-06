@@ -1,11 +1,9 @@
 const express = require('express');
 
 const Exercises = require('../scemas/exercise');
-const calendar = require('../calendar/calendar-api');
 const exercisesRoute = express.Router();
 
 exercisesRoute.get('', (req, res, next) => {
-  calendar.calendarAut();
   Exercises.find()
     .then(exercisesList => {
       exercisesList = exercisesList.map((exercise) => {

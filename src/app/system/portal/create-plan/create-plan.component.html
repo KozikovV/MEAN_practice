@@ -1,12 +1,24 @@
 
 <mat-vertical-stepper>
-  <mat-step label="Step 1">
-    <!-- TO DO list of exercises with checkbox -->
+  <mat-step label="Choose exercise">
+    <mat-grid-list cols="6" rowHeight="4:2">
+      <mat-grid-tile *ngFor="let exercise of exercises" colspan="2">
+        <mat-checkbox (change)="onSelectExercise($event, exercise)">{{exercise.title}}</mat-checkbox>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-step>
-  <mat-step label="Step 2">
-    <!-- TO DO date assing -->
+  <mat-step label="Choose date">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="serializedDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="time" matInput [formControl]="serializedTime">
+      </mat-form-field>
   </mat-step>
-  <mat-step label="Step 3">
-    <!-- TO DO button create training -->
+  <mat-step label="Create training and add it to calendar">
+    <button mat-raised-button color="accend" (click)="createTrainingDay()">Create plan</button>
   </mat-step>
 </mat-vertical-stepper>

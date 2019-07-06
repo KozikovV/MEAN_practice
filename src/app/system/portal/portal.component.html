@@ -6,6 +6,9 @@
         <li class="navigation-list-item">
           <button mat-raised-button color="accent" [routerLink]="['create-training']" (click)="sidenav.toggle()">Create</button>
         </li>
+        <li class="navigation-list-item">
+          <button mat-raised-button color="accent" [routerLink]="['my-calendar']" (click)="sidenav.toggle()">Open calendar</button>
+        </li>
       </ul>
     </nav>
   </mat-sidenav>
@@ -13,8 +16,8 @@
     <app-header></app-header>
     <router-outlet></router-outlet>
   </section>
-  <mat-sidenav position="end" [opened]="toggleProfile" id="profile">
+  <mat-sidenav position="end" [opened]="toggleProfile" id="profile" #profileSidenav>
     <button mat-raised-button color="accent" type="button" (click)="showSidenav('prof')" id="profile-btn">Prof</button>
-    <app-profile></app-profile>
+    <app-profile [sidenav]="profileSidenav"></app-profile>
   </mat-sidenav>
 </mat-sidenav-container>
