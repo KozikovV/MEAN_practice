@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User, ProfileContent } from 'src/app/models/auth';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,8 @@ export class ProfileComponent implements OnInit {
 
   userProfileForm: FormGroup;
   private profileUser: User;
+
+  @Input() sidenav: MatSidenav;
 
   @ViewChild('avatar') avatar: ElementRef;
 
@@ -66,5 +69,9 @@ export class ProfileComponent implements OnInit {
   private setAvatar(path: string): void {
     (this.avatar.nativeElement as HTMLDivElement).style.backgroundImage = `url('${path}')`;
     (this.avatar.nativeElement as HTMLDivElement).style.backgroundSize = 'cover';
+  }
+
+  onCancel(): void {
+    this.sidenav.toggle();
   }
 }

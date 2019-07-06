@@ -5,6 +5,7 @@ const path = require('path');
 
 const exercisesRoute = require('./path/exercises');
 const userRoute = require('./path/users');
+const trainingRoute = require('./path/tarinings');
 
 
 const app = express();
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 
 app.use('/api/exercises', exercisesRoute);
 app.use('/api/users', userRoute);
+app.use('/api/trainings', trainingRoute);
 
 
 module.exports = app;

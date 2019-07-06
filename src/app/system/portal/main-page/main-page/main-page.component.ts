@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ExerciseService } from 'src/app/services/exercise.service';
+import { MatDialog } from '@angular/material';
+import { CreateExerciseComponent } from 'src/app/modals/create-exercise/create-exercise.component';
+import { ExerciseResponse, Exercise } from 'src/app/models/exercise';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +12,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  exerciseList: Exercise[];
+  constructor(
+    private exerciseService: ExerciseService,
+    public dialog: MatDialog,
+    private calendarService: CalendarService
+  ) { }
 
   ngOnInit() {
+    this.fetchExercises();
   }
 
+  fetchExercises() {
+    this.exerciseService.getExerciseList()
+    .subscribe(
+      (response: ExerciseResponse) => {
+        this.exerciseList = response.exercises;
+      }
+    );
+  }
+
+  openCreateExerciseModal(): void {
+    this.calendarService.signIn();
+
+    // const dialogRef = this.dialog.open(CreateExerciseComponent);
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
+  }
+
+  deleteExercise(id: string): void {
+    this.calendarService.getCalendar()
+    .subscribe(
+      data => console.log(data)
+    )
+    // this.exerciseService.deleteExercise(id)
+    // .subscribe(
+    //   (response) => this.fetchExercises()
+    // );
+  }
+
+  editExercise(exercise: Exercise): void {
+    const dialogRef = this.dialog.open(CreateExerciseComponent,
+      { data: exercise }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.fetchExercises();
+      }
+    });
+  }
 }

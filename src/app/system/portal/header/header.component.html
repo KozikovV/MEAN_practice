@@ -1,7 +1,4 @@
 <mat-toolbar>
   <span [routerLink]="['main-page']" routerLinkActive="router-link-active" >Training plan app</span>
-  <button mat-raised-button color="accent" [routerLink]="['my-profile']">Profile</button>
-  <button mat-raised-button color="accent" [routerLink]="['create-training']">Create</button>
   <button mat-raised-button color="error" (click)="onLogout()">Logout</button>
 </mat-toolbar>
-<router-outlet></router-outlet>

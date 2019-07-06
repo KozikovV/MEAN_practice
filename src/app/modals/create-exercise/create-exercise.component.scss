@@ -1,0 +1,14 @@
+mat-card {
+  width: 400px;
+  .information {
+    position: relative;
+    button {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+  }
+}

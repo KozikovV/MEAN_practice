@@ -10,9 +10,13 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { PortalModule } from './system/portal/portal.module';
 import { AuthInterceptor } from './interseptor/auth.interceptor';
+import { CreateExerciseComponent } from './modals/create-exercise/create-exercise.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GapiModule } from './gapi/gapi.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CreateExerciseComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -20,10 +24,17 @@ import { AuthInterceptor } from './interseptor/auth.interceptor';
     AppRoutingModule,
     AuthModule,
     AngularMaterialModule,
-    PortalModule
+    PortalModule,
+    CommonModule,
+    ReactiveFormsModule,
+    GapiModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
+  entryComponents: [
+    CreateExerciseComponent
   ],
   bootstrap: [AppComponent]
 })
