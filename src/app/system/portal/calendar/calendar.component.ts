@@ -26,4 +26,11 @@ export class CalendarComponent implements OnInit {
       }
     );
   }
+
+  deleteTraining(trainingId: string) {
+    this.trainingService.deleteTraining(trainingId)
+    .subscribe(
+      (data) => console.log(data)
+    );
+  }
 }

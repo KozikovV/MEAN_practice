@@ -15,8 +15,7 @@ export class MainPageComponent implements OnInit {
   exerciseList: Exercise[];
   constructor(
     private exerciseService: ExerciseService,
-    public dialog: MatDialog,
-    private calendarService: CalendarService
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -33,22 +32,16 @@ export class MainPageComponent implements OnInit {
   }
 
   openCreateExerciseModal(): void {
-    this.calendarService.signIn();
-
-    // const dialogRef = this.dialog.open(CreateExerciseComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    const dialogRef = this.dialog.open(CreateExerciseComponent);
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   deleteExercise(id: string): void {
-    this.calendarService.getCalendar()
+    this.exerciseService.deleteExercise(id)
     .subscribe(
-      data => console.log(data)
-    )
-    // this.exerciseService.deleteExercise(id)
-    // .subscribe(
-    //   (response) => this.fetchExercises()
-    // );
+      (response) => this.fetchExercises()
+    );
   }
 
   editExercise(exercise: Exercise): void {
