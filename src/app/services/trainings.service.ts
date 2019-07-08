@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SERVICE_URL } from '../config/api-hosts';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CalendarEvent } from '../config/models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class TrainingsService {
     private httpClient: HttpClient
   ) { }
 
-  createTraining(training: any): Observable<any> {
-    return this.httpClient.post(this.base_url + '/create', training);
+  createTraining(training: any, calendarCred: CalendarCred): Observable<any> {
+    return this.httpClient.post(this.base_url + '/create', {training, calendarCred});
   }
 
   getTrainingList(): Observable<any> {
@@ -29,4 +30,10 @@ export class TrainingsService {
   deleteTraining(trainingId: string): Observable<any> {
     return this.httpClient.delete(`${this.base_url}/${trainingId}/delete`);
   }
+}
+
+export interface CalendarCred {
+  calendar_token: string;
+  calendar_id: string;
+  calendar_event: CalendarEvent;
 }

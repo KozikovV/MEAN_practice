@@ -1,3 +1,29 @@
-<p>
-  today-training works!
-</p>
+<mat-card>
+  <mat-card-title>
+    <h1>{{ training?.date }}</h1>
+  </mat-card-title>
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let exercise of training?.exercises">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2>
+            {{ exercise.title }}
+          </h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        {{ exercise.information.description }}
+      </p>
+      <h4>
+        Target muscles
+      </h4>
+      <ul>
+        <li *ngFor="let muscle of exercise.information.targetMuscle">
+          {{ muscle }}
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>

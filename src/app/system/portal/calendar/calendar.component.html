@@ -6,5 +6,6 @@
     <p *ngFor="let exercise of training.exercises" mat-line>
       {{ exercise.title }}
     </p>
+    <button mat-flat-button color="warn" (click)="deleteTraining(training.trainingId)">Delete training</button>
   </mat-list-item>
 </mat-list>
