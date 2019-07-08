@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingsService } from 'src/app/services/trainings.service';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -11,7 +12,8 @@ export class CalendarComponent implements OnInit {
   trainings: any[] = [];
 
   constructor(
-    private trainingService: TrainingsService
+    private trainingService: TrainingsService,
+    private calendarService: CalendarService
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,8 @@ export class CalendarComponent implements OnInit {
   deleteTraining(trainingId: string) {
     this.trainingService.deleteTraining(trainingId)
     .subscribe(
-      (data) => console.log(data)
+      (data) => this.getTrainings()
     );
+    this.calendarService.deleteCalendarEvent(trainingId);
   }
 }

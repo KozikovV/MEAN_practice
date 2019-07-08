@@ -3,31 +3,9 @@ const express = require('express');
 const trainingRoute = express.Router();
 
 const Training = require('../scemas/training');
+const controller = require('../midellware/training-event');
 
-trainingRoute.post('/create', (req, res, next) => {
-  Training.create(req.body)
-  .then(
-    (training) => {
-      if (training) {
-        const resTraining = {
-          date: training.date,
-          trainingId: training._id,
-          exercises: training.exercises.map((exercise) => {
-            return {
-              trainingExerciseId: exercise._id,
-              title: exercise.title,
-              information: exercise.information
-            }
-          })
-        };
-        res.status(200).json({
-          message: 'Training create succesfull',
-          body: resTraining,
-          date: resTraining.date
-        });
-      }
-  });
-});
+trainingRoute.post('/create', controller.createTraining);
 
 trainingRoute.get('', (req, res, next) => {
   Training.find()
