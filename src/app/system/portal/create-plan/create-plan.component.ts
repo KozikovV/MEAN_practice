@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from 'src/app/services/exercise.service';
 import { FormControl, Validators } from '@angular/forms';
-import { TIME_ZONE, CalendarEvent } from 'src/app/config/models';
+import { CalendarEvent } from 'src/app/config/models';
 import { TrainingsService } from 'src/app/services/trainings.service';
 import { CalendarService } from 'src/app/services/calendar.service';
 
@@ -50,14 +50,15 @@ export class CreatePlanComponent implements OnInit {
     });
     this.trainingsService.createTraining({
       date: this.calendarService.dateConverter(this.serializedDate.value), exercises: this.selectedExercises
+    },
+    {
+      calendar_event: calendarEvent,
+      calendar_id: this.calendarService.calendarId,
+      calendar_token: this.calendarService.calendarToken
     })
     .subscribe(
       (data: any) => {
-        calendarEvent.description = this.calendarService.createEventLink(data.body.trainingId);
-        this.calendarService.setCalendarEvent(calendarEvent)
-        .subscribe(
-          event => console.log(event)
-        );
+        console.log(data);
       }
     );
   }

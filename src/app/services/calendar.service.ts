@@ -46,6 +46,11 @@ export class CalendarService {
     return this.http.post(`${this.calendarUrl}${this.calendarId}/events`, calendarEvent);
   }
 
+  deleteCalendarEvent(trainingId) {
+    this.http.delete(`${this.calendarUrl}${this.calendarId}/events/${trainingId}`)
+    .subscribe();
+  }
+
   private signInSuccessHandler(res: any) {
         this.user = res;
         sessionStorage.setItem('calendarId', this.user.w3.U3);
@@ -56,6 +61,10 @@ export class CalendarService {
 
   get calendarId(): string {
     return sessionStorage.getItem('calendarId');
+  }
+
+  get calendarToken(): string {
+    return sessionStorage.getItem(CalendarService.SESSION_STORAGE_KEY);
   }
 
   dateConverter(serializedDate): string {
@@ -78,7 +87,4 @@ export class CalendarService {
     };
   }
 
-  createEventLink(trainingId: string): string {
-    return `${this.applicationUrl}today-training/${trainingId}`;
-  }
 }
