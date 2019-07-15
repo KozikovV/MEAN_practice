@@ -40,7 +40,7 @@
         </div>
         <div class="profile-image">
             <button mat-stroked-button type="button" (click)="fileInput.click()">Choose image</button>
-            <input type="file" #fileInput (change)="onUploadImage($event)">
+            <input type="file" #fileInput (change)="onUploadImage()">
             <div class="image-preview">
                 <img [src]="imagePreview" [alt]="singupForm.value.title">
             </div>

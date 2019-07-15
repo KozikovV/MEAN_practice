@@ -23,7 +23,7 @@ exercisesRoute.post('/create', (req, res, next) => {
   exercise.save()
     .then((response) => {
       res.status(200).json({
-        message: 'create succesfull',
+        message: 'create successful',
         body: {
           title: response.title,
           information: {
@@ -59,7 +59,7 @@ exercisesRoute.put('/edit/:exerciseId', (req, res, next) => {
       return;
     } else {
       res.status(200).json({
-        message: exercise
+        message: 'Exercise edit successfully'
       });
     }
   })

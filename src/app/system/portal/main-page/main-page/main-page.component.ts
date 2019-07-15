@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from 'src/app/services/exercise.service';
 import { MatDialog } from '@angular/material';
 import { CreateExerciseComponent } from 'src/app/modals/create-exercise/create-exercise.component';
-import { ExerciseResponse, Exercise } from 'src/app/models/exercise';
-import { CalendarService } from 'src/app/services/calendar.service';
+import { ExerciseResponse, Exercise } from 'src/app/models/api-models';
 
 @Component({
   selector: 'app-main-page',
@@ -40,7 +39,7 @@ export class MainPageComponent implements OnInit {
   deleteExercise(id: string): void {
     this.exerciseService.deleteExercise(id)
     .subscribe(
-      (response) => this.fetchExercises()
+      () => this.fetchExercises()
     );
   }
 
