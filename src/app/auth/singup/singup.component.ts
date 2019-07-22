@@ -13,6 +13,7 @@ import { Singup } from 'src/app/models/auth';
 export class SingupComponent implements OnInit {
   singupForm: FormGroup;
   imagePreview: string = './assets/images/user.jpg';
+
   constructor(
     private router: Router,
     private userService: UserService
@@ -60,7 +61,7 @@ export class SingupComponent implements OnInit {
         }
   }
 
-  showRequireError(control: AbstractControl, errorType: string): boolean {
+  showError(control: AbstractControl, errorType: string): boolean {
     return control.hasError(errorType);
   }
 }

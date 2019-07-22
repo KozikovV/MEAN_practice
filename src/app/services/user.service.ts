@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SERVICE_URL } from '../config/api-hosts';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Login, Singup } from '../models/auth';
+import {Login, ProfileContent, Singup} from '../models/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class UserService {
     return this.httpClient.post<Login>(this.baseUrl + '/login', credentials);
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
@@ -42,7 +42,11 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
-  getProfileInformation() {
-    return this.httpClient.get(this.baseUrl + '/profile');
+  getProfileInformation(): Observable<ProfileContent> {
+    return this.httpClient.get<ProfileContent>(this.baseUrl + '/profile');
+  }
+
+  clearStorage(): void {
+    localStorage.clear();
   }
 }

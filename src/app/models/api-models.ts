@@ -47,3 +47,12 @@ export interface CreateTrainingResponse {
 export interface DeleteTraining {
   message: string;
 }
+
+export interface TrainingList {
+  body: Training[];
+}
+
+export interface TrainingRes {
+  body: Training;
+}
+

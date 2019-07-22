@@ -8,12 +8,13 @@ import { MainPageComponent } from './system/portal/main-page/main-page/main-page
 import { CreatePlanComponent } from './system/portal/create-plan/create-plan.component';
 import { TodayTrainingComponent } from './system/portal/today-training/today-training.component';
 import { CalendarComponent } from './system/portal/calendar/calendar.component';
+import {LogginedGuard} from './guard/loggined.guard';
 
 const routes: Routes = [
   {path: '',  redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'singup', component: SingupComponent},
-  {path: 'portal', component: PortalComponent,  children: [
+  {path: 'portal', component: PortalComponent, canActivateChild: [LogginedGuard], children: [
     {path: '', redirectTo: 'main-page', pathMatch: 'full'},
     {path: 'main-page', component: MainPageComponent},
     {path: 'create-training', component: CreatePlanComponent},

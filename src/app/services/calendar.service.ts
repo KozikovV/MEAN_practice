@@ -3,6 +3,8 @@ import { GoogleAuthService, GoogleApiService } from 'ng-gapi';
 import { HttpClient } from '@angular/common/http';
 import { CalendarEvent, TIME_ZONE } from '../config/models';
 import { Observable } from 'rxjs';
+import {script_v1} from 'googleapis';
+import Schema$GoogleAppsScriptTypeUser = script_v1.Schema$GoogleAppsScriptTypeUser;
 
 @Injectable({
   providedIn: 'root'
