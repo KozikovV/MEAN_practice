@@ -11,6 +11,7 @@ import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { TodayTrainingComponent } from './today-training/today-training.component';
+import { CalendarSigninComponent } from './main-page/calendar-signin/calendar-signin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TodayTrainingComponent } from './today-training/today-training.componen
     MainPageComponent,
     CreatePlanComponent,
     CalendarComponent,
-    TodayTrainingComponent
+    TodayTrainingComponent,
+    CalendarSigninComponent
   ],
   imports: [
     CommonModule,

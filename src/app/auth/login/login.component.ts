@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           (data: Login) => {
-            this.calendarService.signIn();
+            this.calendarService.signIn(); // TODO remove it to login modal
             this.userService.setToken(data.token);
             this.router.navigate(['./portal']);
           }

@@ -54,7 +54,7 @@ export class CalendarService {
   }
 
   private signInSuccessHandler(res: any) {
-        this.user = res;
+        this.user = res; // TODO remove it to server
         sessionStorage.setItem('calendarId', this.user.w3.U3);
         sessionStorage.setItem(
           CalendarService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token
