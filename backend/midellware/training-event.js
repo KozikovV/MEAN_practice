@@ -19,7 +19,9 @@ exports.createTraining = (req, res, next) => {
               return {
                 trainingExerciseId: exercise._id,
                 title: exercise.title,
-                information: exercise.information
+                information: exercise.information,
+                reps: exercise.reps,
+                count: exercise.count
               }
             })
           };

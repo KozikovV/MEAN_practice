@@ -4,7 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Login } from 'src/app/models/auth';
 import { CalendarService } from 'src/app/services/calendar.service';
-
+import {ReplaySubject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -15,6 +16,10 @@ import { CalendarService } from 'src/app/services/calendar.service';
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+
+  private readonly destroy$: ReplaySubject<void> = new ReplaySubject<void>();
+
+  showError: boolean = false;
 
   constructor(
     private router: Router,
@@ -32,13 +37,17 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.userService.login(this.loginForm.value)
-      .subscribe(
-        (data: Login) => {
-          this.calendarService.signIn();
-          this.userService.setToken(data.token);
-          this.router.navigate(['./portal']);
-        }
-      );
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (data: Login) => {
+            this.calendarService.signIn(); // TODO remove it to login modal
+            this.userService.setToken(data.token);
+            this.router.navigate(['./portal']);
+          }
+        );
+    } else {
+      this.showError = true;
     }
   }
+
 }

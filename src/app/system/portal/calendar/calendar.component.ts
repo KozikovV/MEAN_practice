@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingsService } from 'src/app/services/trainings.service';
 import { CalendarService } from 'src/app/services/calendar.service';
+import {Training} from '../../../models/api-models';
+
 
 @Component({
   selector: 'app-calendar',
@@ -9,7 +11,7 @@ import { CalendarService } from 'src/app/services/calendar.service';
 })
 export class CalendarComponent implements OnInit {
 
-  trainings: any[] = [];
+  trainings: Training[] = [];
 
   constructor(
     private trainingService: TrainingsService,

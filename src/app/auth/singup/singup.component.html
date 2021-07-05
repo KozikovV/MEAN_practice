@@ -2,45 +2,45 @@
   <div class="auth-form-singup">
     <mat-card>
       <form (submit)="onSubmit()" [formGroup]="singupForm">
-        <div class="idintifier">
+        <div class="identifier">
           <mat-form-field>
             <input type="text" matInput formControlName="name" placeholder="First name">
-            <mat-error *ngIf="showRequireError(singupForm.get('name'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showError(singupForm.get('name'), 'required')">Required</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="text" matInput formControlName="surname" placeholder="Last name">
-              <mat-error *ngIf="showRequireError(singupForm.get('surname'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('surname'), 'required')">Required</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="text" matInput formControlName="nickName" placeholder="Nick for app">
-              <mat-error *ngIf="showRequireError(singupForm.get('nickName'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('nickName'), 'required')">Required</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="email" matInput formControlName="email" placeholder="Email">
-              <mat-error *ngIf="showRequireError(singupForm.get('email'), 'required')">Required</mat-error>
-              <mat-error *ngIf="showRequireError(singupForm.get('email'), 'email')">Email</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('email'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('email'), 'email')">Email</mat-error>
           </mat-form-field>
         </div>
         <div class="parameters">
           <mat-form-field>
             <input type="number" matInput formControlName="age" placeholder="Age">
-              <mat-error *ngIf="showRequireError(singupForm.get('age'), 'required')">Required</mat-error>
-              <mat-error *ngIf="showRequireError(singupForm.get('age'), '')">wrong format</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('age'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('age'), '')">wrong format</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="number" matInput formControlName="weight" placeholder="Weight">
-              <mat-error *ngIf="showRequireError(singupForm.get('weight'), 'required')">Required</mat-error>
-              <mat-error *ngIf="showRequireError(singupForm.get('weight'), '')">wrong format</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('weight'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('weight'), '')">wrong format</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="number" matInput formControlName="height" placeholder="Height">
-              <mat-error *ngIf="showRequireError(singupForm.get('height'), 'required')">Required</mat-error>
-              <mat-error *ngIf="showRequireError(singupForm.get('height'), '')">wrong format</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('height'), 'required')">Required</mat-error>
+              <mat-error *ngIf="showError(singupForm.get('height'), '')">wrong format</mat-error>
           </mat-form-field>
         </div>
         <div class="profile-image">
             <button mat-stroked-button type="button" (click)="fileInput.click()">Choose image</button>
-            <input type="file" #fileInput (change)="onUploadImage($event)">
+            <input type="file" #fileInput (change)="onUploadImage()">
             <div class="image-preview">
                 <img [src]="imagePreview" [alt]="singupForm.value.title">
             </div>
@@ -48,7 +48,7 @@
         <div class="password">
           <mat-form-field>
             <input type="password" matInput formControlName="password" placeholder="Enter password">
-            <mat-error *ngIf="showRequireError(singupForm.get('password'), 'required')">Required</mat-error>
+            <mat-error *ngIf="showError(singupForm.get('password'), 'required')">Required</mat-error>
           </mat-form-field>
         </div>
         <button mat-raised-button color="accent" type="submit">SINGUP</button>

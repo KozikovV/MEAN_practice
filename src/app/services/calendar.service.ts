@@ -3,6 +3,8 @@ import { GoogleAuthService, GoogleApiService } from 'ng-gapi';
 import { HttpClient } from '@angular/common/http';
 import { CalendarEvent, TIME_ZONE } from '../config/models';
 import { Observable } from 'rxjs';
+import {script_v1} from 'googleapis';
+import Schema$GoogleAppsScriptTypeUser = script_v1.Schema$GoogleAppsScriptTypeUser;
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +54,7 @@ export class CalendarService {
   }
 
   private signInSuccessHandler(res: any) {
-        this.user = res;
+        this.user = res; // TODO remove it to server
         sessionStorage.setItem('calendarId', this.user.w3.U3);
         sessionStorage.setItem(
           CalendarService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token

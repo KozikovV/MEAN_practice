@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const exercisesRoute = require('./path/exercises');
-const userRoute = require('./path/users');
-const trainingRoute = require('./path/tarinings');
+const exercisesRoute = require('./route/exercises');
+const userRoute = require('./route/users');
+const trainingRoute = require('./route/tarinings');
 
 
 const app = express();

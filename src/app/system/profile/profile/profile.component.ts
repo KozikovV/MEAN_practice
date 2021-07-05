@@ -12,7 +12,7 @@ import { MatSidenav } from '@angular/material';
 export class ProfileComponent implements OnInit {
 
   userProfileForm: FormGroup;
-  private profileUser: User;
+  profileUser: User;
 
   @Input() sidenav: MatSidenav;
 

@@ -3,6 +3,7 @@ import { SERVICE_URL } from '../config/api-hosts';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CalendarEvent } from '../config/models';
+import {CreateTrainingResponse, DeleteTraining, TrainingList, TrainingRes} from '../models/api-models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +16,20 @@ export class TrainingsService {
     private httpClient: HttpClient
   ) { }
 
-  createTraining(training: any, calendarCred: CalendarCred): Observable<any> {
-    return this.httpClient.post(this.base_url + '/create', {training, calendarCred});
+  createTraining(training: any, calendarCred: CalendarCred): Observable<CreateTrainingResponse> {
+    return this.httpClient.post<CreateTrainingResponse>(this.base_url + '/create', {training, calendarCred});
   }
 
-  getTrainingList(): Observable<any> {
-    return this.httpClient.get(this.base_url);
+  getTrainingList(): Observable<TrainingList> {
+    return this.httpClient.get<TrainingList>(this.base_url);
   }
 
-  getTrainingById(trainingId: string): Observable<any> {
-    return this.httpClient.get(this.base_url + '/' + trainingId);
+  getTrainingById(trainingId: string): Observable<TrainingRes> {
+    return this.httpClient.get<TrainingRes>(this.base_url + '/' + trainingId);
   }
 
-  deleteTraining(trainingId: string): Observable<any> {
-    return this.httpClient.delete(`${this.base_url}/${trainingId}/delete`);
+  deleteTraining(trainingId: string): Observable<DeleteTraining> {
+    return this.httpClient.delete<DeleteTraining>(`${this.base_url}/${trainingId}/delete`);
   }
 }
 

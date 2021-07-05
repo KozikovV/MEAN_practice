@@ -4,13 +4,13 @@ const upload = multer({dest: 'backend/images'});
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const imageControll = require('../midellware/avatar')
+const imageControl = require('../midellware/avatar')
 
 const User = require('../scemas/user');
 
 const userRouter = express.Router();
 
-userRouter.post('/singup', imageControll, (req, res, next) => {
+userRouter.post('/singup', imageControl, (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
 
   bcrypt.hash(req.body.password, 10)
@@ -67,7 +67,7 @@ userRouter.post('/login', (req, res, next) => {
     .then((result) => {
       if (!result) {
         return res.status(401).json({
-            message: 'Autorisation failed'
+            message: 'Authorisation failed'
         });
       }
       const token = jwt.sign(
