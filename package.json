@@ -24,7 +24,7 @@
     "@angular/router": "~7.2.0",
     "@types/gapi": "0.0.36",
     "@types/gapi.auth2": "0.0.50",
-    "ajv": "^6.10.0",
+    "ajv": "^6.12.3",
     "ajv-keywords": "^3.4.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
